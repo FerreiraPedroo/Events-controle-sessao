@@ -1,0 +1,18 @@
+*{
+    background-color:ghostwhite;
+    color:black;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    /* border: 1px solid gray; */
+}
+#navbar {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+}
+#nav-rigth{
+float: right;
+}
+

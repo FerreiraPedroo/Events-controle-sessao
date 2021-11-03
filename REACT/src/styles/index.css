@@ -1,0 +1,25 @@
+@font-face {
+  src           : url(https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcDBrBZQI.woff2) format('woff2');
+  font-family   : 'Arimo';
+  font-style    : normal;
+  font-weight   : 400;
+  font-display  : swap;
+  unicode-range : U+1F00-1FFF;
+}
+*{
+  margin      : 0px;
+  padding     : 0px;
+  box-sizing  : border-box;
+  font-family : 'Arimo', sans-serif;
+  font-size   : 8px;
+  /* border      : 1px solid red; */
+}
+#root{
+  height : 100%;
+  width  : 100%;
+}
+html, body{
+  width            : 100%;
+  height           : 100%;
+  background-color : rgb(235,234,234);
+}

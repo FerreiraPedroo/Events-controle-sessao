@@ -1,0 +1,84 @@
+.registerevent-container{
+    width            : 100%;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    background-color : white;
+    margin           : 20px;
+    border           : 2px solid rgba(0,0,0,0.1);
+    border-radius    : 10px;
+    user-select      : none;
+}
+.registerevent-title{
+    width      : 100%;
+    font-size  : 4rem;
+    text-align : center;
+    padding    : 5px;
+}
+.registerevent-form-label{
+    font-size   : 2rem;
+    line-height : 1.75;
+}
+.registerevent-form-input{
+    font-size     : 2rem;
+    border        : 1px solid gray;
+    border-radius : 6px;
+    line-height   : 1;
+    padding       : 5px 10px;
+}
+.registerevent-form-button{
+    color             : rgb(255, 255, 255);
+    background-color  : rgb(46, 125, 50);
+    font-size         : 2rem;
+    letter-spacing    : 0.03em;
+    line-height       : 1.75;
+    min-width         : 64px;
+    margin-top        : 18px;
+    padding           : 6px 16px;
+    border            : 0px;    
+    border-radius     : 4px;
+    cursor            : pointer;
+}
+
+.registerevent-form-textarea{
+    font-size     : 1.9rem;
+    border        : 1px solid gray;
+    border-radius : 6px;
+    line-height   : 1;
+    padding       : 5px 10px;
+}
+.registerevent-form-input-img{
+    font-size     : 2rem;
+    border        : 1px solid gray;
+    border-radius : 6px;
+    line-height   : 1;
+    padding       : 5px 10px;
+}
+.registerevent-status-red, .registerevent-status-green {
+    font-size  : 2rem;
+    width      : 50%;
+    text-align : center;
+    margin-top : 20px;
+    padding    : 10px;
+}
+.registerevent-status-red{
+    background-color: red;
+}
+.registerevent-status-green{
+    background-color: green;
+}
+.registerevent-register-error{
+    font-size     : 1.5rem;
+    text-align    : start;
+    padding       : 2px 0px;
+    margin-bottom : 2px;
+    color         :red;
+    height        : px;
+}
+
+
+
+
+
+
+

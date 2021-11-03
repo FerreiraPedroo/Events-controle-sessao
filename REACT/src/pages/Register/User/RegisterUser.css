@@ -1,0 +1,71 @@
+.registeruser-container{
+    width            : 100%;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    background-color : white;
+    margin           : 20px;
+    border           : 2px solid rgba(0,0,0,0.1);
+    border-radius    : 10px;
+    user-select      : none;
+}
+.registeruser-title{
+    width      : 100%;
+    font-size  : 4rem;
+    text-align : center;
+    padding    : 5px;
+}
+.registeruser-form-label{
+    font-size   : 2rem;
+    margin-top  : 10px;
+    line-height : 1.75;
+}
+.registeruser-form-input{
+    font-size     : 2rem;
+    border        : 1px solid gray;
+    border-radius : 6px;
+    line-height   : 1;
+    padding       : 5px;
+}
+.registeruser-form-button{
+    color             : rgb(255, 255, 255);
+    background-color  : rgb(46, 125, 50);
+    font-size         : 2rem;
+    line-height       : 1.75;
+    min-width         : 64px;
+    margin-top        : 18px;
+    padding           : 6px 16px;
+    border            : 0px;    
+    border-radius     : 4px;
+    cursor            : pointer;
+}
+.registeruser-register-error{
+    font-size   : 1.5rem;
+    color       :red;
+    height      : 14px;
+    text-align  : right;
+}
+.registeruser-form-input-img{
+    width         : 206px;
+    font-size     : 1.5rem;
+    border        : 1px solid gray;
+    border-radius : 6px;
+    line-height   : 1;
+    padding       : 5px 10px;
+}
+.registeruser-status-red,.registeruser-status-green {
+    font-size  : 2rem;
+    width      :50%;
+    text-align : center;
+    margin-top : 20px;
+    padding    : 10px;
+}
+.registeruser-status-red{
+    background-color: red;
+}
+.registeruser-status-green{
+    background-color: green;
+}
+
+
+

@@ -1,0 +1,29 @@
+.navbar {
+    width            : 100%;
+    height           : 56px;
+    display          : flex;
+    background-color : navy;
+    padding-left     : 15px;
+    user-select      : none;
+}
+.navbar-menu-icon, .navbar-menu-icon a {
+    display         : inline-flex;
+    justify-content : space-around;
+    align-items     : center;
+    min-width       : 96px;
+    color           : white;
+    font-size       : 2rem;
+    font-weight     : bold;
+    text-align      : center;
+    margin-left     : 15px;
+    text-decoration : none ;
+    /* border       : 1px solid red; */
+}
+.navbar-menu-icon:hover, .navbar-menu-icon a:hover {
+    color  : dodgerblue;
+    cursor : pointer;
+}
+.navbar-menu-icon span{
+    font-size : 2.5rem;
+    padding   : 0px 5px;
+}

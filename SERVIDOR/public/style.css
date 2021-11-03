@@ -1,0 +1,44 @@
+*{
+    background-color: lightskyblue;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    /* border: 1px solid greenyellow; */
+}
+#text-login{
+    font-size: 48px;
+    margin: 10px;
+}
+form {
+    width: 500px;
+    margin:10px;
+}  
+label {
+    line-height: 2;
+}
+input[type=text] {
+
+    font-size: 1.1rem;
+
+    padding: 5px;
+
+    border:1px solid navy;
+}
+
+
+input[type=button]{
+    color:lightskyblue;
+    background-color: navy;
+
+    font-size: 1.1rem;
+
+    margin: 10px 0px;;
+    padding: 5px;
+    border:0px;
+    border-radius: 6px;
+
+}
+input[type=button]:hover{
+    cursor: pointer;
+}
