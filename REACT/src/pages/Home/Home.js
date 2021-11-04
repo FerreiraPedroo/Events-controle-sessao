@@ -7,7 +7,7 @@ async function loadHomeData(setLoged, setDataHome) {
     const data = await axios(
         {
             method: "post",
-            url: "http://127.0.0.1:8000/data",
+            url: "http://127.0.0.1:8000/admin/data",
             data: {
                 retrieve: "home"
             },
@@ -87,7 +87,7 @@ function Home() {
                                         <div>
                                             <p className="home-event-text-p">ID: <span className="home-event-text">{event.eventID}</span></p>
                                             <p className="home-event-text-p">Evento: <span className="home-event-text">{event.eventName}</span></p>
-                                            <p className="home-event-text-p">Local: <span className="home-event-text">{event.Location}</span></p>
+                                            <p className="home-event-text-p">Local: <span className="home-event-text">{event.eventLocation}</span></p>
                                             <p className="home-event-text-p">Data: <span className="home-event-text">{event.eventDate}</span></p>
                                             <p className="home-event-text-p">Inicio: <span className="home-event-text">{event.eventTime}</span></p>
                                         </div>
@@ -102,7 +102,7 @@ function Home() {
                 </div>
 
 
-                <div className="home-container-list-info">
+                {/* <div className="home-container-list-info">
                     <p className="home-container-list-info-title">EVENTOS DE HOJE : 31/10/2021</p>
                     <div className="home-event">
                         <img className="home-event-img" src="./event.png" alt="Imagem do evento" />
@@ -122,7 +122,7 @@ function Home() {
                     </div>
 
 
-                </div>
+                </div> */}
 
             </div>
 

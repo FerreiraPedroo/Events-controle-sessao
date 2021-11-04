@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import RegisterUser from "../pages/Register/User/RegisterUser"
 import RegisterEvent from "../pages/Register/Event/RegisterEvent";
 
+import EventPage from "../pages/Event/EventPage";
+import UserPage from "../pages/User/UserPage";
+
 //Chegguital
 const title = "ChegueiDigital";
 
@@ -24,6 +27,18 @@ export const routes = [
         path: "/admin/register/event",
         component: RegisterEvent,
         title: title + "- RegisterEvent",
+
+    },
+    {
+        path: "/admin/user",
+        component: UserPage,
+        title: title + "- User",
+
+    },
+    {
+        path: "/admin/event",
+        component: EventPage,
+        title: title + "- EventPage",
 
     },
     {

@@ -93,7 +93,7 @@ const event =
             eventTime: "20:00:00",
             eventImagem: "./event.png"
         }
-]
+    ]
 const people = [
     {
         peopleID: 1,
@@ -236,12 +236,13 @@ app.post("/admin/register/user", (req, res) => {
         return res.send(reqBody.sessionCookie);
     }
 });
+
 // ENVIDO DE DADOS DA HOME - OK
-app.post("/data", (req, res) => {
+app.post("/admin/data", (req, res) => {
     const reqBody = req.body;
     const getBackData = {};
     console.log("#########################################################################################################");
-    console.log("# ROTA: '/data' > METODO: 'POST'                                                                        #");
+    console.log("# ROTA: '/admin/data' > METODO: 'POST'                                                                        #");
     console.log("# REQ BODY: " + JSON.stringify(reqBody));
 
     if (reqBody.sessionCookie.code === "20") {
@@ -276,23 +277,23 @@ app.post("/data", (req, res) => {
             if (event.length <= lastEventAddQtd) {
                 for (let e = 0; e < event.length; e++) {
                     lastEventAdd[e] = {
-                        eventID       : event[e].eventID,
-                        eventName     : event[e].eventName,
-                        eventLocation : event[e].eventLocation,
-                        eventDate     : event[e].eventDate,
-                        eventTime     : event[e].eventTime,
-                        eventImagem   : event[e].eventImagem
+                        eventID: event[e].eventID,
+                        eventName: event[e].eventName,
+                        eventLocation: event[e].eventLocation,
+                        eventDate: event[e].eventDate,
+                        eventTime: event[e].eventTime,
+                        eventImagem: event[e].eventImagem
                     }
                 }
             } else {
                 for (let e = 0; e < lastEventAddQtd; e++) {
                     lastEventAdd[e] = {
-                        eventID       : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventID,
-                        eventName     : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventName,
-                        eventLocation : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventLocation,
-                        eventDate     : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventDate,
-                        eventTime     : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventTime,
-                        eventImagem   : event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventImagem
+                        eventID: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventID,
+                        eventName: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventName,
+                        eventLocation: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventLocation,
+                        eventDate: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventDate,
+                        eventTime: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventTime,
+                        eventImagem: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventImagem
                     }
                 }
             }
@@ -305,7 +306,29 @@ app.post("/data", (req, res) => {
             return res.send(reqBody.sessionCookie);
         }
 
+        if (reqBody.retrieve === "user") {
 
+            reqBody.sessionCookie.getBackData = people.map((people) => {
+                delete people.firstPass;
+                return people;
+            });
+
+            console.log("# GETBACKDATA:", getBackData);
+            console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
+            console.log("#########################################################################################################");
+            return res.send(reqBody.sessionCookie);
+
+        }
+
+        if (reqBody.retrieve === "event") {
+            
+            reqBody.sessionCookie.getBackData = event
+            console.log("# GETBACKDATA:", getBackData);
+            console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
+            console.log("#########################################################################################################");
+            return res.send(reqBody.sessionCookie);
+
+        }
 
 
 
@@ -327,7 +350,7 @@ app.post("/data", (req, res) => {
 
 
 })
-app.get("/home", (req, res) => {
+app.get("/admin/home", (req, res) => {
     return res.send()
 })
 app.listen(8000, (err) => {

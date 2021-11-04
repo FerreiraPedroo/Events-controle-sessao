@@ -99,9 +99,8 @@
     cursor            : pointer;
 }
 .home-container-top-card-month{
-    font-size: 2rem;
-    font-weight: bolder;
-    color:lightskyblue;
-
+    font-size   : 2rem;
+    font-weight : bolder;
+    color       :lightskyblue;
 }
 
