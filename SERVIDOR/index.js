@@ -2,6 +2,7 @@ console.log(""); console.log(""); console.log("");
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const validationLoginCookie = require("./funcoes/validationLoginCookie");
 // const d = new Date(2021, (11)-1, 30).getTime()
 const d = new Date().getTime()
@@ -202,31 +203,39 @@ app.post("/admin/register/user", (req, res) => {
     console.log("# BODY: " + JSON.stringify(reqBody));
 
     if (reqBody.sessionCookie.code === "20") {
-        let newEvent = true;
-        for (let p = 0; p < people.length; p++) {
-            if (people[p].userName === req.body.userName) {
-                console.log(people[p])
-                res.body = req.body.sessionCookie;
-                res.body.getBackData = { code: "40", msg: "Usuário não cadastrado, nome do usuário não disponivel." }
-                newEvent = false;
+        (async () => {
+            const salt = 10;
+            let newUser = true;
+
+            for (let p = 0; p < people.length; p++) {
+                if (people[p].userName === req.body.userName) {
+                    console.log(people[p])
+                    res.body = req.body.sessionCookie;
+                    res.body.getBackData = { code: "40", msg: "Usuário não cadastrado, nome do usuário não disponivel." }
+                    newUser = false;
+                }
             }
-        }
-        if (newEvent) {
-            people.push({
-                peopleID: (people[people.length - 1].peopleID + 1),
-                fullName: reqBody.fullName,
-                email: reqBody.email,
-                docCPF: reqBody.docCPF,
-                userPhoto: reqBody.userPhoto,
-                userName: reqBody.userName,
-                firstPass: reqBody.firstPass,
-            })
-            console.log(people)
-            res.body = req.body.sessionCookie;
-            res.body.getBackData = { code: "20", msg: "Usuário cadastrado com sucesso." }
-        }
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", res.body)
-        return res.send(res.body);
+
+            if (newUser) {
+                let passwordHash = await bcrypt.hash(reqBody.firstPass, salt).then(function(hash) {
+                    console.log("hash:", hash)
+                    return hash                    
+                });
+                people.push({
+                    peopleID: (people[people.length - 1].peopleID + 1),
+                    fullName: reqBody.fullName,
+                    email: reqBody.email,
+                    docCPF: reqBody.docCPF,
+                    userPhoto: reqBody.userPhoto,
+                    userName: reqBody.userName,
+                    firstPass: passwordHash,
+                })
+                console.log(people)
+                res.body = req.body.sessionCookie;
+                res.body.getBackData = { code: "20", msg: "Usuário cadastrado com sucesso." }
+            }
+            return res.send(res.body);
+        })();
 
     } else {
         res.clearCookie("SID");
@@ -237,12 +246,20 @@ app.post("/admin/register/user", (req, res) => {
     }
 });
 
-// ENVIDO DE DADOS DA HOME - OK
+
+
+
+
+
+
+
+
+
 app.post("/admin/data", (req, res) => {
     const reqBody = req.body;
     const getBackData = {};
     console.log("#########################################################################################################");
-    console.log("# ROTA: '/admin/data' > METODO: 'POST'                                                                        #");
+    console.log("# ROTA: '/admin/data' > METODO: 'POST'                                                                  #");
     console.log("# REQ BODY: " + JSON.stringify(reqBody));
 
     if (reqBody.sessionCookie.code === "20") {
@@ -300,8 +317,8 @@ app.post("/admin/data", (req, res) => {
             getBackData.lastEventAdd = lastEventAdd;
             reqBody.sessionCookie.getBackData = getBackData;
             ////////////////////////////////////////////////////////////
-            console.log("# GETBACKDATA:", getBackData);
-            console.log("# reqBody.sessionCookie:", reqBody.sessionCookie);
+            console.log("# GETBACKDATA:", JSON.stringify(getBackData));
+            console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
             console.log("#########################################################################################################");
             return res.send(reqBody.sessionCookie);
         }
@@ -313,7 +330,7 @@ app.post("/admin/data", (req, res) => {
                 return people;
             });
 
-            console.log("# GETBACKDATA:", getBackData);
+            console.log("# GETBACKDATA:", JSON.stringify(getBackData));
             console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
             console.log("#########################################################################################################");
             return res.send(reqBody.sessionCookie);
@@ -321,24 +338,14 @@ app.post("/admin/data", (req, res) => {
         }
 
         if (reqBody.retrieve === "event") {
-            
+
             reqBody.sessionCookie.getBackData = event
-            console.log("# GETBACKDATA:", getBackData);
+            console.log("# GETBACKDATA:", JSON.stringify(getBackData));
             console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
             console.log("#########################################################################################################");
             return res.send(reqBody.sessionCookie);
 
         }
-
-
-
-
-
-
-
-
-
-
 
 
     } else {
@@ -350,6 +357,12 @@ app.post("/admin/data", (req, res) => {
 
 
 })
+
+
+
+
+
+
 app.get("/admin/home", (req, res) => {
     return res.send()
 })

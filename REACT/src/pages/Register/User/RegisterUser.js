@@ -53,13 +53,20 @@ function RegisterUser() {
         return errors;
     };
     const initialValues = {
-        fullName: '',
-        email: '',
-        docCPF: '',
+        // fullName: '',
+        // email: '',
+        // docCPF: '',
+        // userPhoto: '',
+        // userName: '',
+        // firstPass: '',
+        // secondPass: ''
+        fullName: '11111 11111',
+        email: '111@111.com',
+        docCPF: '11111111111',
         userPhoto: '',
-        userName: '',
-        firstPass: '',
-        secondPass: ''
+        userName: '11111111111',
+        firstPass: '11111111111',
+        secondPass: '11111111111'
     }
 
     const formik = useFormik({
