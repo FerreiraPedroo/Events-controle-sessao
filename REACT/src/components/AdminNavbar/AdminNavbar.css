@@ -6,24 +6,26 @@
     padding-left     : 15px;
     user-select      : none;
 }
-.navbar-menu-icon, .navbar-menu-icon a {
+.navbar-menu-icon, .navbar-menu-icon div {
     display         : inline-flex;
     justify-content : space-around;
     align-items     : center;
     min-width       : 96px;
     color           : white;
     font-size       : 2rem;
-    font-weight     : bold;
     text-align      : center;
     margin-left     : 15px;
     text-decoration : none ;
-    /* border       : 1px solid red; */
+    
 }
-.navbar-menu-icon:hover, .navbar-menu-icon a:hover {
+.navbar-menu-icon:hover, .navbar-menu-icon div:hover {
     color  : dodgerblue;
     cursor : pointer;
 }
-.navbar-menu-icon span{
+.navbar-menu-icon div span{
+    color:inherit
+}
+.navbar-menu-icon div span{
     font-size : 2.5rem;
     padding   : 0px 5px;
 }

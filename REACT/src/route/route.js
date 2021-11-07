@@ -1,54 +1,105 @@
 import Login from "../pages/Login/Login";
-import Home from "../pages/Home/Home";
 
-import RegisterUser from "../pages/Register/User/RegisterUser"
-import RegisterEvent from "../pages/Register/Event/RegisterEvent";
+import AdminHome from "../pages/AdminHome/AdminHome";
+import AdminEvent from "../pages/AdminEvent/AdminEvent";
+import AdminUser from "../pages/AdminUser/AdminUser";
+import RegisterUser from "../pages/AdminRegister/User/RegisterUser"
+import RegisterEvent from "../pages/AdminRegister/Event/RegisterEvent";
 
-import EventPage from "../pages/Event/EventPage";
-import UserPage from "../pages/User/UserPage";
+import UserHome from "../pages/UserHome/UserHome";
+import UserEvent from "../pages/UserEvent/UserEvent";
 
-//Chegguital
-const title = "ChegueiDigital";
 
-export const routes = [
-    // {
-    //     path: "/validate",
-    //     component: Validate,
-    //     title: title + "- Validate",
-    //     login: false,
-    // },
-    {
-        path: "/admin/register/user",
-        component: RegisterUser,
-        title: title + "- RegisterUser",
 
-    },
-    {
-        path: "/admin/register/event",
-        component: RegisterEvent,
-        title: title + "- RegisterEvent",
 
-    },
-    {
-        path: "/admin/user",
-        component: UserPage,
-        title: title + "- User",
-
-    },
-    {
-        path: "/admin/event",
-        component: EventPage,
-        title: title + "- EventPage",
-
-    },
-    {
-        path: "/home",
-        component: Home,
-        title: title + "- Inicio",
-    },
-    {
+export const routes = {
+    "/": {
         path: "/",
         component: Login,
-        title: title + "- Login"
+        level: 2
     },
-]
+    "/home": {
+        path: "/home",
+        component: UserHome,
+        level: 0
+    },
+    "/user/event": {
+        path: "/user/event",
+        component: UserEvent,
+        level: 0
+    },
+    "/admin/home": {
+        path: "/admin/home",
+        component: AdminHome,
+        level: 1
+    },
+    "/admin/user": {
+        path: "/admin/user",
+        component: AdminUser,
+        level: 1
+    },
+    "/admin/event": {
+        path: "/admin/event",
+        component: AdminEvent,
+        level: 1
+    },
+    "/admin/register/user": {
+        path: "/admin/register/user",
+        component: RegisterUser,
+        level: 1
+    },
+    "/admin/register/event": {
+        path: "/admin/register/event",
+        component: RegisterEvent,
+        level: 1
+    },
+
+}
+
+
+// export const routes = [
+//     // {
+//     //     path: "/validate",
+//     //     component: Validate,
+//     //     title: title + "- Validate",
+//     //     login: false,
+//     // },
+//     {
+//         path: "/admin/register/user",
+//         component: RegisterUser,
+//         level: 1
+//     },
+//     {
+//         path: "/admin/register/event",
+//         component: RegisterEvent,
+//         level: 1
+//     },
+//     {
+//         path: "/admin/user",
+//         component: UserPage,
+//         level: 1
+//     },
+//     {
+//         path: "/admin/event",
+//         component: EventPage,
+//         level: 1
+//     },
+//     {
+//         path: "/admin/home",
+//         component: AdminHome,
+//         level: 1
+//     },
+//     {
+//         path: "/home",
+//         component: UserHome,
+//         level: 0
+//     },
+//     {
+//         path: "/",
+//         component: Login,
+//         level: 2
+//     },
+// ]
+
+
+

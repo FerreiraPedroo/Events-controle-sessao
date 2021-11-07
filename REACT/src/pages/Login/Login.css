@@ -47,3 +47,9 @@
 #form-login input[type=button]:hover{
     cursor: pointer;
 }
+.form-login-errormsg{
+    height: 16px;
+    font-size: 2rem;
+    color: red;
+    padding:5px 0px;
+}

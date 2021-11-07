@@ -2,21 +2,25 @@ import "./Login.css"
 import React, { useContext, useState } from "react";
 import { PageContext } from "../../context/context";
 import axios from "axios";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 
 function Login() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
+    const [msg, setMsg] = useState("");
     const { loged, setLoged } = useContext(PageContext);
+    const { userLevel, setUserLevel } = useContext(PageContext);
 
     function handleUserInput(_props) {
+        setMsg("")
         if (_props.target.name === "user") {
             setUser(_props.target.value);
         } else if (_props.target.name === "password") {
             setPassword(_props.target.value);
         }
     }
-    async function sendForm(){
+
+    async function sendForm() {
         await axios({
             method: "post",
             url: "http://127.0.0.1:8000/",
@@ -31,40 +35,29 @@ function Login() {
         }
         ).then((response) => {
             let axiosRes = response.data;
-            console.log("RESP AXIOS:", axiosRes)
-            if (axiosRes.code === "20") {
-                if (document.cookie.split("=")[0] === "SID" ? true : false) {
-                    setLoged(true);
-                    return <Redirect to="/home" />
+            console.log("RESP AXIOS:", axiosRes);
+            if (axiosRes.code === "20" && document.cookie.split("=")[0] === "SID" ? true : false) {
+                setUserLevel(axiosRes.level)
+                setLoged(true)
+
+                if (axiosRes.level === 1) {
+                    // history.push("/admin/home");
+                    return (<Redirect push to="/admin/home" />);
                 } else {
-                    setLoged(false);
+                    return (<Redirect push to="/home" />);
                 }
             } else {
                 setLoged(false);
+                setPassword("");
+                setMsg(axiosRes.msg)
+                return (<Redirect push to="/" />);
             }
         })
             .catch((response) => {
-                console.log("axios error - login")
+                console.log("AXIOS ERRO - LOGIN : ", response);
                 setLoged(false);
+                return (<Redirect push to="/" />);
             })
-        // const xhr = new XMLHttpRequest();
-        // xhr.open("POST", "http://127.0.0.1:8000/");
-        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // xhr.setRequestHeader("Access-Control-Allow-Origin", "http://127.0.0.1:3000")
-        // xhr.withCredentials = true;
-        // xhr.onreadystatechange = (_this) => {
-        //     if (xhr.readyState === 4) {
-        //         if (xhr.status === 200) {
-        //             console.log(xhr.getResponseHeader('Set-Cookie'))
-        //             console.log(cookie)
-
-        //         } else {
-        //             // setCookie("sessionCookies",(Math.random()*500))
-
-        //         }
-        //     }
-        // }
-        // xhr.send(`user=${user}&password=${password}`)
     }
 
     return (
@@ -78,11 +71,12 @@ function Login() {
                 <input type="text" id="password" onChange={handleUserInput} name="password" value={password} />
 
                 <input type="button" id="button" onClick={sendForm} value="Enviar" /><br />
-                {/* <span>
+                <div className="form-login-errormsg">
                     {
-                    cookie.SID === undefined ? loged === false ? "" : "Não foi possivel efetuar o login, tente novamente" : ""
-                }
-                </span> */}
+                        msg !== "" ? "Não foi possivel efetuar o login, tente novamente" : ""
+                    }
+                </div>
+
             </form>
         </div>
     )

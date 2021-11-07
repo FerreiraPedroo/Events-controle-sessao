@@ -1,0 +1,82 @@
+[
+    {
+            "eventID": 1,
+            "eventName": "Apresentação",
+            "eventDescription": "Apresentaçao de controle de sessão",
+            "eventLocation": "São José dos Campos, São Paulo",
+            "eventHost": "Alpha EdTech",
+            "eventFinish": false,
+            "eventQtdPeople": {
+                "qtd": "20",
+                "registred": [
+                {}
+            ],
+                "cofirmed": [
+                {}
+            ]
+        },
+            "eventDate": "1638241200000",
+            "eventTime": "14:00:00",
+            "eventImagem": "./event.png"
+    },
+    {
+            "eventID": 2,
+            "eventName": "Ano novo em Nova York",
+            "eventDescription": "Ano novo na times square",
+            "eventLocation": "Nova York, Times square",
+            "eventHost": "EUA",
+            "eventFinish": false,
+            "eventQtdPeople": {
+                "qtd": "5000",
+                "registred": [
+                {}
+            ],
+                "cofirmed": [
+                {}
+            ]
+        },
+            "eventDate": "1640919600000",
+            "eventTime": "20:00:00",
+            "eventImagem": "./event.png"
+    },
+    {
+            "eventID": 3,
+            "eventName": "Ano novo em Copacabana",
+            "eventDescription": "Ano novo na praia de Copacabana",
+            "eventLocation": "Brasil, Rio de Janeiro",
+            "eventHost": "EUA",
+            "eventFinish": false,
+            "eventQtdPeople": {
+                "qtd": "5000",
+                "registred": [
+                {}
+            ],
+                "cofirmed": [
+                {}
+            ]
+        },
+            "eventDate": "1640919600000",
+            "eventTime": "20:00:00",
+            "eventImagem": "./event.png"
+    },
+    {
+            "eventID": 4,
+            "eventName": "Ano novo Paris",
+            "eventDescription": "Ano novo na Torre Eiffel em Paris",
+            "eventLocation": "França, Paris",
+            "eventHost": "EUA",
+            "eventFinish": false,
+            "eventQtdPeople": {
+                "qtd": "5000",
+                "registred": [
+                {}
+            ],
+                "cofirmed": [
+                {}
+            ]
+        },
+            "eventDate": "1640919600000",
+            "eventTime": "20:00:00",
+            "eventImagem": "./event.png"
+    }
+]

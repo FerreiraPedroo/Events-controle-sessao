@@ -1,50 +1,56 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PageContext } from "../../context/context";
 import axios from "axios";
-import "./Home.css"
+import "./AdminHome.css"
 
-async function loadHomeData(setLoged, setDataHome) {
-    const data = await axios(
-        {
-            method: "post",
-            url: "http://127.0.0.1:8000/admin/data",
-            data: {
-                retrieve: "home"
-            },
-            headers: {
-                "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
-            },
-            withCredentials: true
-        }
-    ).then((response) => {
-        let axiosRes = response.data;
-        if (axiosRes.code === "20") {
-            if (document.cookie.split("=")[0] === "SID" ? true : false) {
-                axiosRes.getBackData.lastEventAdd.reverse()
-                setDataHome(axiosRes);
-            } else {
-                setLoged(false);
-            }
-        } else {
-            setLoged(false);
-        }
-    }).catch((response) => {
-        setLoged(false);
-    })
-}
 
-function Home() {
+
+function AdminHome() {
     const [dataHome, setDataHome] = useState();
     const { loged, setLoged } = useContext(PageContext);
 
     useEffect(() => {
         (async () => {
-            await loadHomeData(setLoged, setDataHome);
+            function loadHomeData() {
+                axios(
+                    {
+                        method: "post",
+                        url: "http://127.0.0.1:8000/admin/data",
+                        data: {
+                            retrieve: "adminhome"
+                        },
+                        headers: {
+                            "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
+                        },
+                        withCredentials: true
+                    }
+                ).then((response) => {
+                    let axiosRes = response.data;
+                    if (axiosRes.code === "20") {
+                        if (document.cookie.split("=")[0] === "SID" ? true : false) {
+                            axiosRes.getBackData.lastEventAdd.reverse()
+                            setDataHome(axiosRes.getBackData);
+                        } else {
+                            setLoged(false);
+                        }
+                    } else {
+                        setLoged(false);
+                    }
+                }).catch((response) => {
+                    setLoged(false);
+                })
+            }
+
+            await loadHomeData();
+
+
+
         })()
-        console.log(dataHome)
     }, [])
 
-    if (dataHome === undefined) { return <></> };
+    if (dataHome === undefined) { return <div></div> };
+
+    console.log(dataHome)
     return (
         <div className="home-container">
 
@@ -52,7 +58,7 @@ function Home() {
                 <div className="home-container-top-column">
                     <div className="home-container-top-card">
                         <p></p>
-                        <h3>{dataHome.getBackData.totalMonthEvent}</h3>
+                        <h3>{dataHome.totalMonthEvent}</h3>
                         <p>EVENTOS EM <span className="home-container-top-card-month">OUTUBRO/21</span></p>
                     </div>
                 </div>
@@ -60,7 +66,7 @@ function Home() {
                 <div className="home-container-top-column">
                     <div className="home-container-top-card">
                         <p></p>
-                        <h3>{dataHome.getBackData.allEventQtd}</h3>
+                        <h3>{dataHome.allEventQtd}</h3>
                         <p>TOTAL EVENTOS</p>
                     </div>
                 </div>
@@ -68,7 +74,7 @@ function Home() {
                 <div className="home-container-top-column">
                     <div className="home-container-top-card">
                         <p></p>
-                        <h3>{dataHome.getBackData.peopleQtd}</h3>
+                        <h3>{dataHome.peopleQtd}</h3>
                         <p>TOTAL PESSOAS CADASTRADAS</p>
                     </div>
                 </div>
@@ -78,7 +84,7 @@ function Home() {
                 <div className="home-container-list-info">
                     <p className="home-container-list-info-title">ULTIMOS EVENTOS ADICIONADOS </p>
                     {
-                        dataHome.getBackData.lastEventAdd.map((event) => {
+                        dataHome.lastEventAdd.map((event) => {
                             return (
                                 <div key={event.eventID} className="home-event">
                                     {console.log(event)}
@@ -129,4 +135,4 @@ function Home() {
         </div >
     );
 }
-export default Home;
+export default AdminHome;

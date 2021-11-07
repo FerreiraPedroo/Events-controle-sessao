@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PageContext } from "../../context/context";
 import axios from "axios";
-// import "./User.css";
+// import "./Event.css";
 
-async function loadUserData(setLoged, setDataUser) {
+async function loadEventData(setLoged, setDataEvent) {
     await axios(
         {
             method: "post",
             url: "http://127.0.0.1:8000/admin/data",
             data: {
-                retrieve: "user"
+                retrieve: "adminevent"
             },
             headers: {
                 "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
@@ -20,7 +20,7 @@ async function loadUserData(setLoged, setDataUser) {
         let axiosRes = response.data;
         if (axiosRes.code === "20") {
             if (document.cookie.split("=")[0] === "SID" ? true : false) {
-                setDataUser(axiosRes.getBackData);
+                setDataEvent(axiosRes.getBackData);
             } else {
                 setLoged(false);
             }
@@ -32,19 +32,23 @@ async function loadUserData(setLoged, setDataUser) {
     })
 }
 
-function UserPage() {
-    const [dataUser, setDataUser] = useState();
+function AdminEvent() {
+    const [dataEvent, setDataEvent] = useState();
     const { loged, setLoged } = useContext(PageContext);
 
     useEffect(() => {
         (async () => {
-            await loadUserData(setLoged, setDataUser);
+            await loadEventData(setLoged, setDataEvent);
         })()
-        console.log(dataUser)
+        console.log(dataEvent)
     }, [])
 
-    if (dataUser === undefined) { return <></> };
+    if (dataEvent === undefined) { return <></> };
     return (
+ 
+
+
+
 
 
 
@@ -55,22 +59,25 @@ function UserPage() {
 
         <>
         {
-            dataUser.map((user)=>{
+            dataEvent.map((event)=>{
                 return(
-                    <div>{JSON.stringify(user)}</div>
+                    <div>{JSON.stringify(event)}</div>
                 )
             })
         }
         
+
+
+
+
+
+
+
+
+
+
+
         </>
-
-
-
-
-
-
-
-
     );
 }
-export default UserPage;
+export default AdminEvent;

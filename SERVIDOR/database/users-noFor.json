@@ -1,0 +1,36 @@
+{
+    "ph":{
+        "ID": 1,
+        "userName": "ph",
+        "password": "$2b$10$Go1bJHy/4Ga9NtLgwG7UiuSI8F6ldOeS9ZvFAPCmb.FltYC59l/Wa",
+        "nivel": "admin"
+    },
+    "master":{
+        "ID": 2,
+        "userName": "master",
+        "password": "$2b$10$Go1bJHy/4Ga9NtLgwG7UiuSI8F6ldOeS9ZvFAPCmb.FltYC59l/Wa",
+        "nivel": "admin"
+    },
+    "ph2":{
+        "ID": 3,
+        "userName": "ph2",
+        "password": "$2b$10$Go1bJHy/4Ga9NtLgwG7UiuSI8F6ldOeS9ZvFAPCmb.FltYC59l/Wa",
+        "nivel": "user"
+    },
+    "ph3":{
+        "ID": 4,
+        "userName": "ph3",
+        "password": "$2b$10$Go1bJHy/4Ga9NtLgwG7UiuSI8F6ldOeS9ZvFAPCmb.FltYC59l/Wa",
+        "nivel": "user"
+    },
+    "master123":{
+        "ID": 5,
+        "fullName": "Pedro Henrique de Assis Ferreira",
+        "email": "master@master.com",
+        "docCPF": "000.000.000-99",
+        "userPhoto": "./img/photo.jpg",
+        "userName": "master123",
+        "password": "$2b$10$Go1bJHy/4Ga9NtLgwG7UiuSI8F6ldOeS9ZvFAPCmb.FltYC59l/Wa",
+        "nivel": "user"
+    }
+}

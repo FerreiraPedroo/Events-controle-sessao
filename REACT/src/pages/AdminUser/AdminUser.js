@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PageContext } from "../../context/context";
 import axios from "axios";
-// import "./Event.css";
+// import "./User.css";
 
-async function loadEventData(setLoged, setDataEvent) {
+async function loadUserData(setLoged, setDataUser) {
     await axios(
         {
             method: "post",
             url: "http://127.0.0.1:8000/admin/data",
             data: {
-                retrieve: "event"
+                retrieve: "adminuser"
             },
             headers: {
                 "Access-Control-Allow-Origin": "http://127.0.0.1:3000"
@@ -20,7 +20,7 @@ async function loadEventData(setLoged, setDataEvent) {
         let axiosRes = response.data;
         if (axiosRes.code === "20") {
             if (document.cookie.split("=")[0] === "SID" ? true : false) {
-                setDataEvent(axiosRes.getBackData);
+                setDataUser(axiosRes.getBackData);
             } else {
                 setLoged(false);
             }
@@ -32,23 +32,19 @@ async function loadEventData(setLoged, setDataEvent) {
     })
 }
 
-function EventPage() {
-    const [dataEvent, setDataEvent] = useState();
+function AdminUser() {
+    const [dataUser, setDataUser] = useState();
     const { loged, setLoged } = useContext(PageContext);
 
     useEffect(() => {
         (async () => {
-            await loadEventData(setLoged, setDataEvent);
+            await loadUserData(setLoged, setDataUser);
         })()
-        console.log(dataEvent)
+        console.log(dataUser)
     }, [])
 
-    if (dataEvent === undefined) { return <></> };
+    if (dataUser === undefined) { return <></> };
     return (
- 
-
-
-
 
 
 
@@ -59,25 +55,22 @@ function EventPage() {
 
         <>
         {
-            dataEvent.map((event)=>{
+            dataUser.map((user)=>{
                 return(
-                    <div>{JSON.stringify(event)}</div>
+                    <div>{JSON.stringify(user)}</div>
                 )
             })
         }
         
-
-
-
-
-
-
-
-
-
-
-
         </>
+
+
+
+
+
+
+
+
     );
 }
-export default EventPage;
+export default AdminUser;
