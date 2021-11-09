@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
 import { PageContext } from "../../../context/context";
 import { useFormik } from "formik";
-import "./RegisterUser.css"
 import axios from "axios";
+import "./RegisterUser.css"
 
 function RegisterUser() {
-    const { loged, setLoged } = useContext(PageContext);
+    const { loged, setLoged,setUserLevel } = useContext(PageContext);
     const [getBackDataStatus, setGetDataBackStatus] = useState("");
 
     const validate = values => {
-        console.log(values)
         setGetDataBackStatus("")
         const errors = {};
         if (!values.fullName) {
@@ -60,13 +59,13 @@ function RegisterUser() {
         // userName: '',
         // firstPass: '',
         // secondPass: ''
-        fullName: '11111 11111',
-        email: '111@111.com',
+        fullName: 'Pedro Henrique',
+        email: 'email@email.com',
         docCPF: '11111111111',
         userPhoto: '',
-        userName: '11111111111',
-        firstPass: '11111111111',
-        secondPass: '11111111111'
+        userName: 'ph123456',
+        firstPass: '123456',
+        secondPass: '123456'
     }
 
     const formik = useFormik({
@@ -84,9 +83,11 @@ function RegisterUser() {
             })
                 .then((response) => {
                     let axiosRes = response.data;
+                    console.log(">>>>>>>>>>>>:   ", axios.code, " - COOKIE: ",document.cookie, " - LOGED: ", loged )
                     if (axiosRes.code === "20") {
                         if (document.cookie.split("=")[0] === "SID" ? true : false) {
                             setLoged(true);
+                            console.log("AXIOS", axiosRes,document.cookie)
                             if (axiosRes.getBackData.code === "20") {
                                 resetForm(
                                     {
@@ -229,7 +230,7 @@ function RegisterUser() {
                         ) : <div className="registeruser-register-error"> </div>}
                     </div>
                 </div>
-                <button type="submit" className="registeruser-form-button">Cadastrar</button>
+                <button type="submit" className="registeruser-form-button">CADASTRAR</button>
             </form>
             {
                 getBackDataStatus !== "" ? <div className={getBackDataStatus.code === "20" ? "registeruser-status-green" : "registeruser-status-red"}>{getBackDataStatus.msg}</div> : ""

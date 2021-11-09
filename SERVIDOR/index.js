@@ -3,295 +3,23 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const qrcode = require("qrcode-generator")
+const readFile = require('./funcoes/readFile-v0');
+const saveFile = require('./funcoes/saveFile');
 const validationLoginCookie = require("./funcoes/validationLoginCookie");
 // const d = new Date(2021, (11)-1, 30).getTime()
 // const d = new Date().getTime()
 // console.log(d)
 // console.log(new Date(d))
+let event = ""
+let people = "";
+(async () => {
+    people = await readFile("./database/", "users.json", 1);
+    event = await readFile("./database/", "event.json", 1);
+})()
 
-const event =
-    [
-        {
-            eventID: 1,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "São José dos Campos, São Paulo",
-            eventHost: "Alpha EdTech",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "20",
-                registred: [
-                    { "userName": "Pedro", "qrCode": "" },
-                    { "userName": "PH", "qrCode": "" },
-                    { "userName": "master", "qrCode": "" }
-                ],
-                confirmed: [
-                    { "userName": "Pedro", "qrCode": "", "date": "1638241200000", "time": "00:00" },
-                ]
-            },
-            eventDate: "1638241200000",
-            eventTime: "14:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 2,
-            eventName: "Ano novo em Nova York",
-            eventDescription: "Ano novo na times square",
-            eventLocation: "Nova York, Times square",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 3,
-            eventName: "Ano novo em Copacabana",
-            eventDescription: "Ano novo na praia de Copacabana",
-            eventLocation: "Brasil, Rio de Janeiro",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 4,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "França, Paris",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 5,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "São José dos Campos, São Paulo",
-            eventHost: "Alpha EdTech",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "20",
-                registred: [
-                    { "userName": "Pedro", "qrCode": "" },
-                    { "userName": "PH", "qrCode": "" },
-                    { "userName": "master", "qrCode": "" }
-                ],
-                confirmed: [
-                    { "userName": "Pedro", "qrCode": "", "date": "1638241200000", "time": "00:00" },
-                ]
-            },
-            eventDate: "1638241200000",
-            eventTime: "14:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 6,
-            eventName: "Ano novo em Nova York",
-            eventDescription: "Ano novo na times square",
-            eventLocation: "Nova York, Times square",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 7,
-            eventName: "Ano novo em Copacabana",
-            eventDescription: "Ano novo na praia de Copacabana",
-            eventLocation: "Brasil, Rio de Janeiro",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 8,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "França, Paris",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 10,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "São José dos Campos, São Paulo",
-            eventHost: "Alpha EdTech",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "20",
-                registred: [
-                    { "userName": "Pedro", "qrCode": "" },
-                    { "userName": "PH", "qrCode": "" },
-                    { "userName": "master", "qrCode": "" }
-                ],
-                confirmed: [
-                    { "userName": "Pedro", "qrCode": "", "date": "1638241200000", "time": "00:00" },
-                ]
-            },
-            eventDate: "1638241200000",
-            eventTime: "14:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 11,
-            eventName: "Ano novo em Nova York",
-            eventDescription: "Ano novo na times square",
-            eventLocation: "Nova York, Times square",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 107,
-            eventName: "Ano novo em Copacabana",
-            eventDescription: "Ano novo na praia de Copacabana",
-            eventLocation: "Brasil, Rio de Janeiro",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        },
-        {
-            eventID: 1008,
-            eventName: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventDescription: "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
-            eventLocation: "França, Paris",
-            eventHost: "EUA",
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: "5000",
-                registred: [
-                    {}
-                ],
-                confirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: "20:00",
-            eventImagem: "./event.png"
-        }
-    ]
-const people = [
-    {
-        peopleID: 1,
-        fullName: "Pedro Henrique de Assis Ferreira",
-        email: "master@master.com",
-        docCPF: "000.000.000-99",
-        userPhoto: "./img/photo.jpg",
-        userName: "master12",
-        firstPass: "123456789"
-    },
-    {
-        peopleID: 2,
-        fullName: '1111111 1111111111',
-        email: 'email@email.com',
-        docCPF: '12345678901',
-        userPhoto: '',
-        userName: '1',
-        firstPass: '11111111111111111',
-    }
-]
+
 const app = express();
-
 app.use(cors({
     "origin": "http://127.0.0.1:3000",
     "methods": "GET,POST",
@@ -339,31 +67,42 @@ app.post("/admin/data", (req, res) => {
             ////////////////////////////////////////////////////////////
             // PEGA OS ULTIMO "n" EVENTOS CADASTRADOS.
             const lastEventAdd = [];
-            const lastEventAddQtd = 3
+            const lastEventAddQtd = 1;
             if (event.length <= lastEventAddQtd) {
                 for (let e = 0; e < event.length; e++) {
-                    lastEventAdd[e] = {
-                        eventID: event[e].eventID,
-                        eventName: event[e].eventName,
-                        eventLocation: event[e].eventLocation,
-                        eventDate: event[e].eventDate,
-                        eventTime: event[e].eventTime,
-                        eventImagem: event[e].eventImagem
-                    }
+                    lastEventAdd[e] = event[(event.length - (e + 1))]
                 }
             } else {
                 for (let e = 0; e < lastEventAddQtd; e++) {
-                    lastEventAdd[e] = {
-                        eventID: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventID,
-                        eventName: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventName,
-                        eventLocation: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventLocation,
-                        eventDate: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventDate,
-                        eventTime: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventTime,
-                        eventImagem: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventImagem
-                    }
+                    lastEventAdd[e] = event[(event.length - (e + 1))]
+                    // lastEventAdd[e] = {
+                    //     eventID: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventID,
+                    //     eventName: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventName,
+                    //     eventLocation: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventLocation,
+                    //     eventDate: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventDate,
+                    //     eventTime: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventTime,
+                    //     eventImagem: event.slice((event.length - lastEventAddQtd) + e, (event.length - lastEventAddQtd) + e + 1)[0].eventImagem
+                    // }
                 }
             }
             getBackData.lastEventAdd = lastEventAdd;
+
+            ////////////////////////////////////////////////////////////
+            // PEGA OS ULTIMO "n" USUARIOS CADASTRADOS.
+            const lastUserAdd = [];
+            const lastUserAddQtd = 1;
+
+            if (people.length <= lastUserAddQtd) {
+                for (let u = 0; u < people.length; u++) {
+                    lastUserAdd[u] = people[(people.length - (u + 1))];
+                }
+            } else {
+                for (let u = 0; u < lastUserAddQtd; u++) {
+                    lastUserAdd[u] = people[(people.length - (u + 1))];
+                }
+            }
+            getBackData.lastUserAdd = lastUserAdd;
+
             reqBody.sessionCookie.getBackData = getBackData;
             ////////////////////////////////////////////////////////////
             console.log("# GETBACKDATA:", JSON.stringify(getBackData));
@@ -374,7 +113,6 @@ app.post("/admin/data", (req, res) => {
 
         if (reqBody.retrieve === "adminuser") {
             reqBody.sessionCookie.getBackData = people.map((people) => {
-                delete people.firstPass;
                 return people;
             });
             console.log("# GETBACKDATA:", JSON.stringify(getBackData));
@@ -384,6 +122,7 @@ app.post("/admin/data", (req, res) => {
         }
 
         if (reqBody.retrieve === "adminevent") {
+            reqBody.sessionCookie.eventQtdTotal = event.length
             reqBody.sessionCookie.getBackData = event
             console.log("# GETBACKDATA:", JSON.stringify(getBackData));
             console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
@@ -405,12 +144,11 @@ app.post("/admin/data", (req, res) => {
 
 
     } else {
-        console.log("# RES SEND: ", JSON.stringify(reqBody.sessionCookie).slice(0,160)+"...");
+        console.log("# RES SEND: ", JSON.stringify(reqBody.sessionCookie).slice(0, 160) + "...");
         console.log("# LOGIN ERROR                                                                                           #");
         console.log("#########################################################################################################");
         return res.send(reqBody.sessionCookie);
     }
-
 
 })
 
@@ -424,9 +162,9 @@ app.post("/user/data", (req, res) => {
     if (reqBody.sessionCookie.code === "20" && reqBody.level === 0) {
         console.log("# USER - LOGED                                                                                          #");
 
+
         if (reqBody.retrieve === "userhome") {
             reqBody.sessionCookie.getBackData = event.map((event) => {
-                delete event.eventQtdPeople.confirmed
                 for (let e = 0; e < event.eventQtdPeople.registred.length; e++) {
                     if (event.eventQtdPeople.registred[e].hasOwnProperty("userName")) {
                         event.eventQtdPeople.registeredTrue = event.eventQtdPeople.registred[e].userName === reqBody.user ? true : false
@@ -435,21 +173,60 @@ app.post("/user/data", (req, res) => {
                 return event;
             })
             console.log("# GETBACKDATA:", JSON.stringify(getBackData));
-            console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
             console.log("#########################################################################################################");
             return res.send(reqBody.sessionCookie);
         }
-        if( reqBody.retrieve === "userevent") {
-            reqBody.sessionCookie.getBackData = event.filter((event)=>{
-                if(event.eventID === reqBody.eventID ){
+
+        if (reqBody.retrieve === "userevent") {
+            reqBody.sessionCookie.getBackData = event.filter((event) => {
+                if (event.eventID === reqBody.eventID) {
                     return event;
                 }
             })
+            reqBody.sessionCookie.registred = reqBody.sessionCookie.getBackData[0].eventQtdPeople.registred.find((user) => {
+                return user.userID === reqBody.userID;
+            })
+            if (reqBody.sessionCookie.registred === undefined) {
+                reqBody.sessionCookie.registred = false
+            } else {
+                const qr = qrcode(6, "L");
+                qr.addData("http://127.0.0.1:8000/confirm/qrcode?e=" + reqBody.eventID + "&q=" + reqBody.sessionCookie.registred.qrcode);
+                qr.make();
+                reqBody.sessionCookie.registred.qrcodeImg = qr.createImgTag(3, 4);
+                reqBody.sessionCookie.registred.qrcodeImg = reqBody.sessionCookie.registred.qrcodeImg.split(" ")[1].slice(5).slice(0, -1)
+                // console.log(reqBody.sessionCookie.registred.qrcodeImg)
+                // console.log(qr.createImgTag(3, 4, "Imagem QRCODE"))
+            }
+
             console.log("# GETBACKDATA:", JSON.stringify(reqBody.sessionCookie.getBackData));
-            console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
             console.log("#########################################################################################################");
             return res.send(reqBody.sessionCookie);
         }
+
+        if (reqBody.retrieve === "usereventregister") {
+            (async () => {
+                const salt = 10;
+                const password = "/" + reqBody.user + "/" + reqBody.eventID
+                let passwordHash = await bcrypt.hash(password, salt).then(function (hash) {
+                    console.log("PASS       /" + reqBody.user + "/" + reqBody.eventID + " - hash:", hash)
+                    return hash
+                });
+
+                event.map((event) => {
+                    if (event.eventID === reqBody.eventID) {
+                        event.eventQtdPeople.registred.push({ "userID": reqBody.userID, "qrcode": passwordHash })
+                    }
+                    return event
+                })
+                let result = await saveFile("./database/", "event.json", 1, JSON.stringify(event))
+
+                console.log("# GETBACKDATA:", JSON.stringify(reqBody.sessionCookie.getBackData));
+                console.log("# reqBody.sessionCookie:", JSON.stringify(reqBody.sessionCookie));
+                console.log("#########################################################################################################");
+                return res.send(reqBody.sessionCookie);
+            })();
+        }
+
 
     } else {
         console.log("# RES SEND: ", JSON.stringify(reqBody.sessionCookie));
@@ -464,6 +241,65 @@ app.post("/user/data", (req, res) => {
 
 
 
+app.get("/confirm/:qr", (req, res) => {
+
+    const qrcode = req.query;
+    let confirmationResponse = "";
+    if (qrcode.hasOwnProperty("e") && qrcode.hasOwnProperty("q")) {
+        let confirmedQrcode = false;
+        let registredQrcode = false;
+        let userConfirmed = "";
+        let moveRegistredToConfirm = undefined;
+        event.find((eve) => {
+            if (eve.eventID === qrcode.e) {
+                eve.eventQtdPeople.confirmed.find((confirmed) => {
+                    if (confirmed.qrcode === qrcode.q) {
+                        confirmedQrcode = true;
+                        confirmationResponse = "<div>VOCÊ JÀ CONFIRMOU SUA PRESENÇA</div>";
+                    }
+                })
+            }
+        })
+
+        if (!confirmedQrcode) {
+            event.map((eve) => {
+                if (eve.eventID === qrcode.e) {
+                    eve.eventQtdPeople.registred.map((registred) => {
+                        if (registred.qrcode === qrcode.q) {
+                            moveRegistredToConfirm = registred;
+                        } else {
+                            return registred
+                        }
+                    })
+                    if (moveRegistredToConfirm !== undefined) {
+                        eve.eventQtdPeople.confirmed.push(moveRegistredToConfirm);
+                        let result = saveFile("./database/", "event.json", 1, JSON.stringify(event))
+                        registredQrcode = true;
+                        userConfirmed = moveRegistredToConfirm;
+                        confirmationResponse = "<div>VOCE ACABOU DE CONFIRMAR SUA PRESENÇA</div>"
+                    } else {
+                        confirmationResponse = "<div>Erro não foi possivel confirmar seu QR-CODE</div>"
+                    }
+                    moveRegistredToConfirm = undefined;
+
+                } else {
+                    return event;
+                }
+            })
+
+        }
+        if (!confirmedQrcode === !registredQrcode) {
+            confirmationResponse = "<div>Não foi possivel confirmar o seu QR-CODE</div>"
+        }
+console.log(userConfirmed)
+    } else {
+        confirmationResponse = "<div>Houve um erro, não foi possivel confirmar o QR-CODE</div>"
+    }
+    
+    return res.send(confirmationResponse)
+
+})
+
 // REGISTRO DE EVENTO - OK
 app.post("/admin/register/event", (req, res) => {
     const reqBody = req.body;
@@ -472,31 +308,35 @@ app.post("/admin/register/event", (req, res) => {
     console.log("# BODY: " + JSON.stringify(reqBody));
 
     if (reqBody.sessionCookie.code === "20" && reqBody.level === 1) {
-        event.push({
-            eventID: (event[event.length - 1].eventID + 1),
-            eventName: reqBody.eventName,
-            eventDescription: reqBody.eventDescription,
-            eventLocation: reqBody.eventLocation,
-            eventHost: reqBody.eventHost,
-            eventFinish: false,
-            eventQtdPeople:
-            {
-                qtd: reqBody.eventQtdPeople,
-                registred: [
-                    {}
-                ],
-                cofirmed: [
-                    {}
-                ]
-            },
-            eventDate: "1640919600000",
-            eventTime: reqBody.eventTime,
-            eventImagem: reqBody.eventImagem
-        })
-        res.body = req.body.sessionCookie;
-        res.body.getBackData = { code: "20", msg: "Evento cadastrado com sucesso." }
-        return res.send(res.body);
+        (async () => {
+            const eventDateConvert = new Date(reqBody.eventDate).getTime()
+            event.push({
+                eventID: "EVENT-" + (Number(event[event.length - 1].eventID.split("-")[1]) + 1),
+                eventName: reqBody.eventName,
+                eventDescription: reqBody.eventDescription,
+                eventLocation: reqBody.eventLocation,
+                eventHost: reqBody.eventHost,
+                eventFinish: false,
+                eventQtdPeople:
+                {
+                    qtd: reqBody.eventQtdPeople,
+                    registred: [
+                        {}
+                    ],
+                    cofirmed: [
+                        {}
+                    ]
+                },
+                eventDate: eventDateConvert,
+                eventTime: reqBody.eventTime,
+                eventImagem: reqBody.eventImagem
+            })
+            let result = await saveFile("./database/", "event.json", 1, JSON.stringify(event))
 
+            res.body = req.body.sessionCookie;
+            res.body.getBackData = { code: "20", msg: "Evento cadastrado com sucesso." }
+            return res.send(res.body);
+        })()
     } else {
         res.clearCookie("SID");
         console.log("# RES SEND: ", JSON.stringify(reqBody));
@@ -504,6 +344,7 @@ app.post("/admin/register/event", (req, res) => {
         console.log("#########################################################################################################");
         return res.send(reqBody.sessionCookie);
     }
+
 });
 // REGISTRO DE USUÁRIOS - OK
 app.post("/admin/register/user", (req, res) => {
@@ -519,7 +360,6 @@ app.post("/admin/register/user", (req, res) => {
 
             for (let p = 0; p < people.length; p++) {
                 if (people[p].userName === req.body.userName) {
-                    console.log(people[p])
                     res.body = req.body.sessionCookie;
                     res.body.getBackData = { code: "40", msg: "Usuário não cadastrado, nome do usuário não disponivel." }
                     newUser = false;
@@ -532,21 +372,21 @@ app.post("/admin/register/user", (req, res) => {
                     return hash
                 });
                 people.push({
-                    peopleID: (people[people.length - 1].peopleID + 1),
+                    ID: "USER-" + (Number(people[people.length - 1].ID.split("-")[1]) + 1),
                     fullName: reqBody.fullName,
                     email: reqBody.email,
                     docCPF: reqBody.docCPF,
                     userPhoto: reqBody.userPhoto,
                     userName: reqBody.userName,
-                    firstPass: passwordHash,
+                    password: passwordHash,
+                    level: "user"
                 })
-                console.log(people)
+                let result = await saveFile("./database/", "users.json", 1, JSON.stringify(people))
                 res.body = req.body.sessionCookie;
                 res.body.getBackData = { code: "20", msg: "Usuário cadastrado com sucesso." }
             }
             return res.send(res.body);
         })();
-
     } else {
         res.clearCookie("SID");
         console.log("# RES SEND: ", JSON.stringify(reqBody));

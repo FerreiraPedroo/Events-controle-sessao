@@ -1,0 +1,171 @@
+.admin-event-container{
+    width       : 100%;
+    max-width   : 1240px;
+    padding     : 10px;
+    align-self  : center;
+    user-select : none;
+}
+.admin-event-container-top {
+    display         : flex;
+    justify-content : stretch;
+    gap             : 8px;
+}
+.admin-event-container-top-column {
+    width   : 100%;
+    display : inline-flex;
+}
+.admin-event-container-top-column:hover {
+    cursor    : pointer;
+    color     : dodgerblue;
+    transform : scale(1.015);
+}
+.admin-event-container-top-card {
+    width            :100%;
+    box-shadow       : 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    background-color :darkblue;
+    border-radius    : 6px;
+}
+.admin-event-container-top-card p,  .admin-event-container-top-card h3{
+    font-size      : 2rem;
+    text-align     : center;
+    color          :white;
+    padding        : 16px;
+    letter-spacing : 1px;
+    word-spacing   : 4px;
+}
+.admin-event-container-top-card h3{
+    font-size : 2.5rem;
+}
+.admin-event-container-center{
+    width       : 100%;
+    padding-top : 15px;
+}
+.admin-event-container-register{
+    width            : 100%;
+    display          : flex;
+    background-color : white;
+    border           : 2px solid rgba(0,0,0,0.1);
+    border-radius    : 6px;
+    user-select      : none;
+    padding          : 10px;
+    margin-bottom    : 10px;
+}
+.admin-event-container-list-info{
+    width            : 100%;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    background-color : white;
+    border           : 2px solid rgba(0,0,0,0.1);
+    border-radius    : 6px;
+    user-select      : none;
+    padding-bottom   : 10px;
+    padding          : 0px 5px 20px 5px;
+    gap              : 12px;
+}
+.admin-event-container-list-info-title{
+    width            : 100%;
+    font-size        : 2.8rem;
+    font-weight      : bolder;
+    color            : #333;
+    padding          : 10px;
+    letter-spacing   : 1px;
+}
+.admin-event-event{
+    display       : flex;
+    width         : 100%;
+    padding       : 10px 10px 10px 10px;
+    border-radius : 6px;
+    border        : 1px solid silver;
+}
+.admin-event-event-img{
+    min-width     : 256px;
+    height        : 128px;
+    border-radius : 4px;
+    margin-right  : 10px;
+    align-self    : center;
+}
+/* .admin-event-event-img-people{
+    margin        : 0px 58px 0px 48px;
+    width         : 160px;
+    height        : 192px;
+    border-radius : 4px;
+    align-self    : center;  
+} */
+.admin-event-event-info-container{
+    width           : 100%;
+    display         : flex;
+    justify-content : space-between;
+}
+.admin-event-event-text-p{
+    font-size     : 2rem;
+    font-weight   : 600;
+    color         : #333;
+    margin-bottom : 8px;
+    word-spacing  : -2px;
+}
+.admin-event-event-text{
+    font-size   : 2rem;
+    font-weight : normal;
+    color       : #333;
+}
+.admin-event-open-event-button{
+    min-width        : 64px;
+    align-self       : flex-end;
+    font-size        : 1.75rem;
+    color            : rgb(255, 255, 255);
+    background-color : #4CAF50;
+    line-height      : 1.5;
+    padding          : 12px 20px;
+    border           : 0px; 
+    border-radius    : 8px;
+    margin-left      : 15px;
+    cursor           : pointer;
+}
+.admin-event-container-top-card-month{
+    font-size   : 2rem;
+    font-weight : bolder;
+    color       :lightskyblue;
+}
+
+/* *{border:1px solid red;} */
+
+@media only screen and (max-width: 600px) {
+    /* *{border:1px solid red;} */
+    .admin-event-container{
+        padding : 5px;
+    }
+    .admin-event-container-top {
+        display        : flex;
+        flex-direction : column;
+    }
+    .admin-event-container-top-card p,  .admin-event-container-top-card h3{
+        font-size      : 2rem;
+        text-align     : center;
+        color          :white;
+        padding        : 8px;
+    }
+    .admin-event-container-top-column {
+        width : 100%;
+    }
+    .admin-event-container-list-info{
+        display        : flex;
+        flex-direction : column;
+    }
+    .admin-event-event{
+        display        : flex;
+        flex-direction : column;
+        padding        : 10px 10px 10px 10px;
+    }
+    .admin-event-event-img, .admin-event-event-img-people{
+        align-self : center;
+        margin-bottom: 10px;
+    }
+    .admin-event-event-info-container{
+        flex-direction  : column;
+    }
+    .admin-event-open-event-button{
+        margin            : 2px 0px;
+    }
+
+}

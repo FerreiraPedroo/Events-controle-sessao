@@ -2,9 +2,14 @@
     user-select: none;
 }
 #text-title{
-    width: 100%;
-    padding-left:20px;
-    font-size: 6rem;
+    width         : 100%;
+    font-size     : 6rem;
+    text-align    : center;
+    font-weight   : bolder;
+    font-style    : oblique;
+    padding-right : 16px;
+    padding-top   : 12px;
+
 }
 #form-login{
     position: absolute;
@@ -22,7 +27,7 @@
     font-weight: bold;
     line-height: 2;
 }
-#form-login input[type=text] {
+#form-login input[type=text],#form-login input[type=password] {
     width:100%;
     font-size: 3rem;
 
@@ -52,4 +57,15 @@
     font-size: 2rem;
     color: red;
     padding:5px 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    #form-login{
+        width: 80%;
+        position: absolute;
+    }
+    
+
+
+
 }

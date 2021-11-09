@@ -39,7 +39,6 @@ function Login() {
             if (axiosRes.code === "20" && document.cookie.split("=")[0] === "SID" ? true : false) {
                 setUserLevel(axiosRes.level)
                 setLoged(true)
-
                 if (axiosRes.level === 1) {
                     // history.push("/admin/home");
                     return (<Redirect push to="/admin/home" />);
@@ -68,7 +67,7 @@ function Login() {
                 <input type="text" id="user" onChange={handleUserInput} name="user" value={user} /><br />
 
                 <label forhtml="password">Senha</label><br />
-                <input type="text" id="password" onChange={handleUserInput} name="password" value={password} />
+                <input type="password" id="password" onChange={handleUserInput} name="password" value={password} />
 
                 <input type="button" id="button" onClick={sendForm} value="Enviar" /><br />
                 <div className="form-login-errormsg">

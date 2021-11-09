@@ -3,7 +3,13 @@ import { PageContext } from "../../context/context";
 import axios from "axios";
 import "./AdminHome.css"
 
-
+function longDate(dateTimeStamp) {
+    const rawDate = new Date(Number(dateTimeStamp)).toISOString("pt-BR")
+    if (dateTimeStamp === undefined) return "";
+    const meses = { "01": "Janeiro", "02": "Fevereiro", "03": "Março", "04": "Abril", "05": "Maio", "06": "Junho", "07": "Julho", "08": "Agosto", "09": "Setembro", "10": "Outubro", "11": "Novembro", "12": "Dezembro" };
+    const dateLong = rawDate.slice(0, 10).split('-').reverse()
+    return (dateLong[0] + " " + meses[String(dateLong[1])] + " de " + dateLong[2])
+}
 
 function AdminHome() {
     const [dataHome, setDataHome] = useState();
@@ -26,6 +32,7 @@ function AdminHome() {
                     }
                 ).then((response) => {
                     let axiosRes = response.data;
+                    console.log(axiosRes)
                     if (axiosRes.code === "20") {
                         if (document.cookie.split("=")[0] === "SID" ? true : false) {
                             axiosRes.getBackData.lastEventAdd.reverse()
@@ -40,11 +47,7 @@ function AdminHome() {
                     setLoged(false);
                 })
             }
-
             await loadHomeData();
-
-
-
         })()
     }, [])
 
@@ -82,23 +85,23 @@ function AdminHome() {
 
             <div className="home-container-center">
                 <div className="home-container-list-info">
-                    <p className="home-container-list-info-title">ULTIMOS EVENTOS ADICIONADOS </p>
+                    <p className="home-container-list-info-title">ULTIMO EVENTO ADICIONADO</p>
                     {
                         dataHome.lastEventAdd.map((event) => {
                             return (
                                 <div key={event.eventID} className="home-event">
                                     {console.log(event)}
-                                    <img className="home-event-img" src={event.eventImagem === "" ? "event.png" : event.eventImagem} alt="Imagem do evento" />
+                                    <img className="home-event-img" src={event.eventImagem === "" ? "/img/event.png" : event.eventImagem} alt="Imagem do evento" />
                                     <div className="home-event-info-container">
                                         <div>
                                             <p className="home-event-text-p">ID: <span className="home-event-text">{event.eventID}</span></p>
                                             <p className="home-event-text-p">Evento: <span className="home-event-text">{event.eventName}</span></p>
                                             <p className="home-event-text-p">Local: <span className="home-event-text">{event.eventLocation}</span></p>
-                                            <p className="home-event-text-p">Data: <span className="home-event-text">{event.eventDate}</span></p>
+                                            <p className="home-event-text-p">Data: <span className="home-event-text">{longDate(event.eventDate)}</span></p>
                                             <p className="home-event-text-p">Inicio: <span className="home-event-text">{event.eventTime}</span></p>
                                         </div>
                                         <div>
-                                            <button id={event.eventID} className="home-open-event-button">Visualizar</button>
+                                            <button id={event.eventID} className="home-open-event-button">VISUALIZAR</button>
                                         </div>
                                     </div>
                                 </div>
@@ -106,30 +109,32 @@ function AdminHome() {
                         })
                     }
                 </div>
+            </div>
 
-
-                {/* <div className="home-container-list-info">
-                    <p className="home-container-list-info-title">EVENTOS DE HOJE : 31/10/2021</p>
-                    <div className="home-event">
-                        <img className="home-event-img" src="./event.png" alt="Imagem do evento" />
-                        <div className="home-event-info-container">
-                            <div>
-                                <p className="home-event-text-p">ID: <span className="home-event-text">xxx-xxx</span></p>
-                                <p className="home-event-text-p">Evento: <span className="home-event-text">Nome completo do Evento de estreia</span></p>
-                                <p className="home-event-text-p">Local: <span className="home-event-text">Rua do beco A, com esquina da rua 7</span></p>
-                                <p className="home-event-text-p">Data: <span className="home-event-text">31/10/2021</span></p>
-                                <p className="home-event-text-p">Inicio: <span className="home-event-text">18:00</span></p>
-                            </div>
-                            <div>
-                                <p className="home-event-text-p">Status: <span className="home-event-text">Em andamento</span></p>
-                                <button className="home-open-event-button">Visualizar</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div> */}
-
+            <div className="home-container-center">
+                <div className="home-container-list-info">
+                    <p className="home-container-list-info-title">ULTIMA PESSOA CADASTRADA</p>
+                    {
+                        dataHome.lastUserAdd.map((user) => {
+                            return (
+                                <div key={user.ID} className="home-event">
+                                    {console.log(user)}
+                                    <img className="home-event-img-people" src={user.userPhoto === "" ? "/img/user.jpg" : user.userPhoto} alt="Imagem do evento" />
+                                    <div className="home-event-info-container">
+                                        <div>
+                                            <p className="home-event-text-p">ID: <span className="home-event-text">{user.ID}</span></p>
+                                            <p className="home-event-text-p">Nome: <span className="home-event-text">{user.fullName}</span></p>
+                                            <p className="home-event-text-p">E-Mail: <span className="home-event-text">{user.email}</span></p>
+                                        </div>
+                                        <div>
+                                            <button id={user.userID} className="home-open-event-button">VISUALIZAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
         </div >

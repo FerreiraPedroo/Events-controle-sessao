@@ -1,23 +1,28 @@
 .registerevent-container{
     width            : 100%;
-    display          : flex;
+    max-width        : 1240px;
     flex-direction   : column;
+    align-self       : center;
     align-items      : center;
+    display          : flex;
     background-color : white;
-    margin           : 20px;
     border           : 2px solid rgba(0,0,0,0.1);
     border-radius    : 10px;
+    margin           : 20px;
+    padding          : 10px;
     user-select      : none;
 }
 .registerevent-title{
     width      : 100%;
     font-size  : 4rem;
+    color      : #333;
     text-align : center;
     padding    : 5px;
 }
 .registerevent-form-label{
     font-size   : 2rem;
     line-height : 1.75;
+    color       : #333;
 }
 .registerevent-form-input{
     font-size     : 2rem;
@@ -27,17 +32,18 @@
     padding       : 5px 10px;
 }
 .registerevent-form-button{
-    color             : rgb(255, 255, 255);
-    background-color  : rgb(46, 125, 50);
-    font-size         : 2rem;
-    letter-spacing    : 0.03em;
-    line-height       : 1.75;
-    min-width         : 64px;
-    margin-top        : 18px;
-    padding           : 6px 16px;
-    border            : 0px;    
-    border-radius     : 4px;
-    cursor            : pointer;
+    min-width        : 64px;
+    align-self       : flex-end;
+    margin           : 20px;
+    font-size        : 1.75rem;
+    color            : rgb(255, 255, 255);
+    background-color : #4CAF50;
+    line-height      : 1.5;
+    padding          : 12px 20px;
+    border           : 0px; 
+    border-radius    : 8px;
+    margin-left      : 15px;
+    cursor           : pointer;
 }
 
 .registerevent-form-textarea{
@@ -58,14 +64,15 @@
     font-size  : 2rem;
     width      : 50%;
     text-align : center;
-    margin-top : 20px;
     padding    : 10px;
 }
 .registerevent-status-red{
     background-color: red;
+    color:white;
 }
 .registerevent-status-green{
     background-color: green;
+    color:white;
 }
 .registerevent-register-error{
     font-size     : 1.5rem;
@@ -73,9 +80,24 @@
     padding       : 2px 0px;
     margin-bottom : 2px;
     color         :red;
-    height        : px;
+    /* height        : px; */
 }
 
+
+@media only screen and (max-width: 600px) {
+    /* *{border:1px solid red;} */
+    .registerevent-form-input-img{
+        max-width: 256px;
+    }
+    .registerevent-container{
+        margin        : 5px;
+        margin-top    : 20px;
+        margin-bottom : 20px;
+    }
+    .registerevent-title{
+        font-size  : 3rem;
+    }
+}
 
 
 

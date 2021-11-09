@@ -1,3 +1,8 @@
+.navbar-container{
+    position :sticky;
+    top      : 0;
+    width    :100%;
+}
 .navbar {
     width            : 100%;
     min-height       : 48px;
@@ -5,6 +10,14 @@
     background-color : navy;
     padding-left     : 15px;
     user-select      : none;
+}
+.navbar-top-title{
+    display       : inline-flex;
+    text-align    : center;
+    align-self    : center;
+    font-weight   : bolder;
+    font-style    : oblique;
+    padding-right : 16px;
 }
 .navbar-menu-icon, .navbar-menu-icon div {
     display         : inline-flex;
@@ -22,10 +35,41 @@
     color  : dodgerblue;
     cursor : pointer;
 }
-.navbar-menu-icon div span{
-    color:inherit
+.navbar-menu-icon div span, .navbar-menu-icon div p{
+    color :inherit
 }
-.navbar-menu-icon div span{
+.navbar-menu-icon div span, .navbar-menu-icon div p{
     font-size : 2.5rem;
     padding   : 0px 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        align-items : flex-start;
+    }
+    .navbar {
+        display          : flex;
+        align-items      : center;
+        background-color : navy;
+        padding-left     : 0px;
+        user-select      : none;
+    }
+    .navbar-menu-icon, .navbar-menu-icon div {
+        align-items  : center;
+        min-width    : 32px;
+        margin-left  : 25px;
+    }
+
+    .navbar-menu-icon{
+        margin-left  : 0px;
+        margin       : 0px 0px;
+    }
+    .navbar-menu-icon div span{
+        font-size : 4rem;
+    }
+    .navbar-menu-icon div p{
+        display: none;
+    }
+
 }

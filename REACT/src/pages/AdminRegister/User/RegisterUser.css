@@ -1,12 +1,15 @@
 .registeruser-container{
     width            : 100%;
-    display          : flex;
+    max-width        : 1240px;
     flex-direction   : column;
+    align-self       : center;
     align-items      : center;
+    display          : flex;
     background-color : white;
-    margin           : 20px;
     border           : 2px solid rgba(0,0,0,0.1);
     border-radius    : 10px;
+    margin           : 20px;
+    padding          : 10px;
     user-select      : none;
 }
 .registeruser-title{
@@ -19,6 +22,7 @@
     font-size   : 2rem;
     margin-top  : 10px;
     line-height : 1.75;
+    color       : #333;
 }
 .registeruser-form-input{
     font-size     : 2rem;
@@ -28,16 +32,18 @@
     padding       : 5px;
 }
 .registeruser-form-button{
-    color             : rgb(255, 255, 255);
-    background-color  : rgb(46, 125, 50);
-    font-size         : 2rem;
-    line-height       : 1.75;
-    min-width         : 64px;
-    margin-top        : 18px;
-    padding           : 6px 16px;
-    border            : 0px;    
-    border-radius     : 4px;
-    cursor            : pointer;
+    min-width        : 64px;
+    align-self       : flex-end;
+    margin           : 10px;
+    font-size        : 1.75rem;
+    color            : rgb(255, 255, 255);
+    background-color : #4CAF50;
+    line-height      : 1.5;
+    padding          : 12px 20px;
+    border           : 0px; 
+    border-radius    : 8px;
+    margin-left      : 15px;
+    cursor           : pointer;
 }
 .registeruser-register-error{
     font-size   : 1.5rem;
@@ -57,15 +63,31 @@
     font-size  : 2rem;
     width      :50%;
     text-align : center;
-    margin-top : 20px;
+
     padding    : 10px;
 }
 .registeruser-status-red{
     background-color: red;
+    color:white;
 }
 .registeruser-status-green{
     background-color: green;
+    color:white;
 }
 
 
+@media only screen and (max-width: 600px) {
+    /* *{border:1px solid red;} */
+    .registeruser-form-input-img{
+        max-width: 256px;
+    }
+    .registeruser-container{
+        margin        : 5px;
+        margin-top    : 20px;
+        margin-bottom : 20px;
+    }
+    .registeruser-title{
+        font-size  : 3rem;
+    }
 
+}

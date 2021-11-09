@@ -1,0 +1,124 @@
+[
+    {
+        "eventID": "EVENT-1",
+        "eventName": "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
+        "eventDescription": "É um evento de divulgação científica cujo público-alvo são pesquisadores, professores e estudantes de graduação e de pós-graduação de todas as instituições de ensino superior. Em 2021, o tema central do ENFOC é: TODAS AS CIÊNCIAS SÃO HUMANAS: DESAFIOS, POSSIBILIDADES E SOLUÇÕES.",
+        "eventLocation": "São José dos Campos, São Paulo",
+        "eventHost": "Alpha EdTech",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "20",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1639241200000",
+        "eventTime": "14:00",
+        "eventImagem": "/img/event-1.jpg"
+    },
+    {
+        "eventID": "EVENT-2",
+        "eventName": "Direito empresarial",
+        "eventDescription": "O conteúdo em questão faz parte da série 'para o ensino básico' produzida pelo corpo docente do Programa Direito na escola. A seguir estão 1 e-book e um vídeo animado completos sobre o tema Direito empresarial. O objetivo da serie é desburocratizar a linguagem da ciência do Direito e democratizar a informação a todos os públicos. Buscamos transformar a sociedade através da educação.",
+        "eventLocation": "São Paulo, SP",
+        "eventHost": "BR",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "5000",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1640919600000",
+        "eventTime": "20:00",
+        "eventImagem": "/img/event-1.jpg"
+    },
+    {
+        "eventID": "EVENT-4",
+        "eventName": "Congresso das Engenharias",
+        "eventDescription": "O objetivo deste projeto é promover o diálogo e a aproximação entre os profissionais e estudantes das diversas áreas da Engenharia, Agronomia e Geociências, tendo como prioridade a apresentação de temas que proporcionem visibilidade às novas dinâmicas relacionadas à atuação dos profissionais.",
+        "eventLocation": "Distrito Federal, DF",
+        "eventHost": "EUA",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "5000",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1640919600000",
+        "eventTime": "20:00",
+        "eventImagem": "/img/event-7.jpg"
+    },
+    {
+        "eventID": "EVENT-6",
+        "eventName": "Esperando Godot",
+        "eventDescription": "Estragão (Marcelo Drummond) e Vladimir (Guilherme Calzavara) são dois palhaços vagabundos que se encontram na encruzilhada entre a paralisia e a tomada da ação. Enquanto esperam Godot, embora não saibam quem ou o que é, a dupla se encontra com as personagens que passam pela estrada: Pozzo – O Domador (Pascoal da Conceição), Lucky – A Fera (Danilo Grangheia) e O Menino Mensageiro (Raphael Moreira), que traz notícias inquietantes que podem determinar a perpetuação da inércia ou a libertação total da paralisia. Mas afinal, quem é Godot?",
+        "eventLocation": "São Paulo, Teatro Municipal",
+        "eventHost": "BR",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "5000",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1650919600000",
+        "eventTime": "20:00",
+        "eventImagem": "/img/event-7.jpg"
+    },
+    {
+        "eventID": "EVENT-8",
+        "eventName": "MUSEU DA SELFIE",
+        "eventDescription": "Um lugar 100% dedicado a aqueles que não dispensam fotos lindas e descoladas para as redes sociais. Esse é o Museu da Selfie, que desembarca em São Paulo no dia 9 de outubro, com 27 cenários instagramáveis para garantir ótimos cliques e 'likes'. Tendência mundo afora, espaço traz curiosidades e conta um pouco sobre a história da fotografia ! Garanta já o seu ingresso!",
+        "eventLocation": "São PAulo, SP",
+        "eventHost": "Prefeitura",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "5000",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1540919600000",
+        "eventTime": "20:00",
+        "eventImagem": "/img/event-4.jpg"
+    },
+    {
+        "eventID": "EVENT-9",
+        "eventName": "MUSEU DO AMANHÃ",
+        "eventDescription": "O Museu do Amanhã é um museu de ciências diferente. Um ambiente de ideias, informações, explorações e perguntas sobre a época de grandes mudanças em que vivemos e reflexões sobre os diferentes caminhos que se abrem para o futuro. O Amanhã é uma construção da qual cada pessoa participa, em sua cidadania. A partir das perspectivas da sustentabilidade e da convivência, o Museu oferece ao visitante uma jornada rumo a futuros possíveis, passando por grandes perguntas que a Humanidade sempre se fez. De onde viemos? Quem somos? Onde estamos? Para onde vamos? Como queremos ir?",
+        "eventLocation": "Rio de Janeiro, Rio de Janeiro",
+        "eventHost": "Prefeitura RJ",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "20",
+            "registred": [],
+            "confirmed": []
+        },
+        "eventDate": "1638241200000",
+        "eventTime": "14:00",
+        "eventImagem": "/img/event-5.jpg"
+    },
+    {
+        "eventID": "EVENT-12",
+        "eventName": "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
+        "eventDescription": "XVI ENFOC - Encontro de Iniciação Científica e Fórum Científico, VII Seminário PIBID - Programa Institucional de Bolsa de Iniciação à Docência",
+        "eventLocation": "França, Paris",
+        "eventHost": "EUA",
+        "eventFinish": false,
+        "eventQtdPeople": {
+            "qtd": "10",
+            "registred": [
+                {
+                    "userID": "USER-2",
+                    "qrcode": "$2b$10$jpyEE6p2tBidMnTzd2arV.fGlGRTvda6VNL6NDRN3SfLEAJyFqW5i"
+                }
+            ],
+            "confirmed": [
+                {
+                    "userID": "USER-2",
+                    "qrcode": "$2b$10$jpyEE6p2tBidMnTzd2arV.fGlGRTvda6VNL6NDRN3SfLEAJyFqW5i"
+                }
+            ]
+        },
+        "eventDate": "1990019600000",
+        "eventTime": "20:00",
+        "eventImagem": "/img/event-7.jpg"
+    }
+]

@@ -4,10 +4,8 @@ import { useFormik } from "formik";
 import axios from "axios";
 import "./RegisterEvent.css"
 
-
-
 function RegisterEvent() {
-    const { loged, setLoged } = useContext(PageContext);
+    const { loged, setLoged,setUserLevel } = useContext(PageContext);
     const [getBackDataStatus, setGetDataBackStatus] = useState("");
 
     const validate = values => {
@@ -56,14 +54,14 @@ function RegisterEvent() {
         return errors;
     };
     const initialValues = {
-        eventName: 'Primeiro',
-        eventDescription: 'Primeiro evento do ano 2022',
-        eventLocation: 'Casa123',
-        eventHost: 'Eu',
-        eventQtdPeople: 1,
-        eventDate: '',
-        eventTime: '23:59',
-        eventImagem: './event.png'
+        eventName: "Primeiro",
+        eventDescription: "Primeiro evento do ano 2022",
+        eventLocation: "Em casa",
+        eventHost: "Eu",
+        eventQtdPeople: 2,
+        eventDate: "",
+        eventTime: "23:59",
+        eventImagem: "/img/event.png"
 
         // eventName: '',
         // eventDescription: '',
@@ -72,7 +70,7 @@ function RegisterEvent() {
         // eventQtdPeople: '',
         // eventDate: '',
         // eventTime: '',
-        // eventImagem: ''
+        // eventImagem: ""
     }
 
     const formik = useFormik({
@@ -90,9 +88,11 @@ function RegisterEvent() {
             })
                 .then((response) => {
                     let axiosRes = response.data;
+                    console.log(">>>>>>>>>>>>:   ", axiosRes.code, " - COOKIE: ",document.cookie, " - LOGED: ", loged )
                     if (axiosRes.code === "20") {
                         if (document.cookie.split("=")[0] === "SID" ? true : false) {
                             setLoged(true);
+                            console.log("AXIOS", axiosRes,document.cookie)
                             if (axiosRes.getBackData.code === "20") {
                                 resetForm(
                                     {
@@ -247,7 +247,7 @@ function RegisterEvent() {
                         <input type="file" className="registerevent-form-input-img" id="eventImagem" name="eventImagem" accept="image/*" />
                     </div>
                 </div>
-                <button type="submit" className="registerevent-form-button">Cadastrar</button>
+                <button type="submit" className="registerevent-form-button">CADASTRAR</button>
             </form>
             {
                 getBackDataStatus !== "" ? <div className={getBackDataStatus.code === "20" ? "registerevent-status-green" : "registerevent-status-red"}>{getBackDataStatus.msg}</div> : ""

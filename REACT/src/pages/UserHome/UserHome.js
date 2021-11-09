@@ -4,13 +4,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./UserHome.css"
 
-function longDate(date) {
-    if (date === undefined) return "";
+function longDate(dateTimeStamp) {
+    const rawDate = new Date(Number(dateTimeStamp)).toISOString("pt-BR")
+    if (dateTimeStamp === undefined) return "";
     const meses = { "01": "Janeiro", "02": "Fevereiro", "03": "Março", "04": "Abril", "05": "Maio", "06": "Junho", "07": "Julho", "08": "Agosto", "09": "Setembro", "10": "Outubro", "11": "Novembro", "12": "Dezembro" };
-    const dateLong = date.slice(0, 10).split('-').reverse()
+    const dateLong = rawDate.slice(0, 10).split('-').reverse()
     return (dateLong[0] + " " + meses[String(dateLong[1])] + " de " + dateLong[2])
 }
-
 
 function UserHome() {
     const [dataHome, setDataHome] = useState();
@@ -39,9 +39,7 @@ function UserHome() {
                     }
                 ).then((response) => {
                     let axiosRes = response.data;
-                    console.log("RESP AXIOS - USERHOME:", axiosRes);
                     if (axiosRes.code === "20") {
-                        console.log(document.cookie.split("=")[0] === "SID" ? true : false)
                         if (document.cookie.split("=")[0] === "SID" ? true : false) {
                             axiosRes.getBackData.reverse()
                             setDataHome(axiosRes.getBackData);
@@ -62,24 +60,27 @@ function UserHome() {
         })()
     }, [])
 
-
     if (dataHome === undefined) { return <><div></div></> };
+    console.log(dataHome)
     return (
         <div className="user-home-container">
+            <div className="user-home-bg">
+            </div>
+
             <div className="user-home-container-list-info">
-                <p className="home-container-list-info-title">EVENTOS DE HOJE : 31/10/2021</p>
+                <p className="home-container-list-info-title">EVENTOS</p>
                 {
                     dataHome.map((event) => {
                         return (
-                            <div key={"event-" + event.eventID + new Date().getTime()} onClick={() => { redirectToEvent(event.eventID) }} className="user-home-event">
-                                <img className="user-home-event-img" src="./event.png" alt="Imagem do evento" />
+                            <div key={"event-" + event.eventID} onClick={() => { redirectToEvent(event.eventID) }} className="user-home-event">
+                                <img className="user-home-event-img" src={event.eventImagem === "" ? "/img/event.jpg" : event.eventImagem} alt="Imagem do evento" />
                                 <div className="user-home-event-info-container">
                                     <div className="user-home-event-text">{event.eventName}</div>
                                 </div>
                                 <div className="user-home-event-date">
                                     <span className="material-icons">today</span>
-                                    <span className="home-event-text">
-                                        {longDate(new Date(Number(event.eventDate)).toISOString("pt-BR"))}
+                                    <span className="user-home-event-text">
+                                        {longDate(event.eventDate)}
                                     </span>
                                 </div>
                             </div>
